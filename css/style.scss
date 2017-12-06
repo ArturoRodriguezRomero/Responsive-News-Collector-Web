@@ -1,0 +1,325 @@
+@import url('https://fonts.googleapis.com/css?family=Barlow+Condensed:300,400,700');
+
+$font-stack: 'Barlow Condensed', sans-serif;
+
+$bg-color: #fff;
+$bg-color-light: #faf9f9;
+$bg-color-dark: #f5f5f5;
+
+$accent-color: #31D8A0;
+
+$text-color-light: #dfdfdf;
+$text-color-white: white;
+
+$shadow-color: rgba(0, 0, 0, 0.2);
+$shadow-color-dark: rgba(0, 0, 0, 0.5);
+
+$hover-bg-color: rgba(0, 0, 0, 0.2);
+$hover-bg-color-light: rgba(0, 0, 0, 0.1);
+
+$screen-sm-max: 576px;
+@mixin sm {
+    @media (max-width: #{$screen-sm-max}) {
+        @content;
+    }
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: $font-stack;
+
+}
+
+.app{
+    display: flex;
+    flex-direction: column;
+    background-color: $bg-color;
+    justify-content: center;
+}
+
+.header{
+    position: fixed;
+    top: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-left: 10px;
+    padding-right: 10px;
+    align-items: center;
+    background-color: $accent-color;
+    width: 100%;
+    height: 40px;
+    box-shadow: 0px 2px 2px $shadow-color;
+
+    z-index: 2;
+
+    .guide-button-expand{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $text-color-white;
+        font-size: 1.4em;
+        height: 1.6em;
+        width: 1.6em;
+        transition: .1s ease;
+        &:hover{
+            cursor: pointer;
+            background-color: $hover-bg-color;
+            border-radius: 50px;
+        }
+    }
+
+    .title{
+        margin-left: 10px;
+        color: $text-color-white;
+        font-size: 2em;
+    }
+}
+
+.content-container{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin-top: 0px;
+}
+
+.guide-container{
+    position: fixed;
+    top: 40px;
+    width: 220px;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: $bg-color-dark;
+    box-shadow: 2px 0px 2px $shadow-color;
+    padding-top: 20px;
+    z-index: 1;
+    transition: .3s ease;
+
+    .guide-button{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        font-size: 1.4em;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        transition: .1s ease;
+        font-weight: 300;
+
+        &:hover{
+            background-color: $hover-bg-color-light;
+            cursor: pointer;
+
+            .icon{
+                color: $accent-color;
+            }
+        }
+    }
+
+    .icon{
+        color: $text-color-light;
+        width: 1.6em;
+    }
+
+    .icon-active{
+        color: $accent-color;
+    }
+
+    .name{
+        padding-left: 5px;
+    }
+
+    .divider{
+        border-bottom: 2px solid $text-color-light;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .guide-title{
+        font-size: 1.4em;
+        padding-left: 10px;
+    }
+
+    .query-input{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        
+        .placeholder{
+            margin-bottom: 5px;
+        }
+
+        input[type="text"]{
+            width: 100%;
+            border: none;
+            font-size: 1.3em;
+            border-radius: 3px;
+            padding: 3px;
+            box-shadow: inset 0px 0px 4px 2px $shadow-color;
+        }
+
+        input[type="text"]:focus{
+            outline: 2px solid $accent-color;
+        }
+    }
+
+    .query-row{
+        display: flex;
+        flex-direction: row;
+
+        button{
+            width:30px;
+            background-color: $accent-color;
+            border: none;
+            font-size: 1.4em;
+            color: $text-color-white;
+        }
+    }
+}
+
+.sources-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    .source-row{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+        margin-bottom: 3px;
+
+        .source{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+
+            input[type="checkbox"]{
+                margin-right: 3px;
+            }
+        }
+    }
+}
+
+.guide-container-hidden{
+    margin-left: -220px;
+}
+
+.page-container{
+    position: relative;
+    width: 100%;
+    margin-left: 220px;
+    margin-top: 40px;
+    padding: 10px;
+    transition: .3s ease;
+
+    .page{
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .page-hidden{
+        display: none;
+    }
+
+    .article-item{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        height: 400px;
+        background-color: white;
+        box-shadow: 0px 0px 5px $shadow-color;
+        border-radius: 2px;
+        overflow: hidden;
+        transition: .3s ease;
+        margin: 5px;
+
+        &:hover{
+            box-shadow: 0px 0px 15px 5px $shadow-color;
+            cursor: pointer;
+
+            .image{
+                height: 200px;
+            }
+        }
+
+        .image{
+            width: 100%;
+            height: 300px;
+            background-image: url(https://ichef-1.bbci.co.uk/news/1024/cpsprodpb/2084/production/_99042380_may_reuters.jpg);
+            background-size: cover;
+            background-position: center center;
+            transition: .3s ease;
+        }
+
+        .body{
+            box-shadow: 0px -10px 10px $shadow-color-dark;
+            overflow: hidden;
+        }
+
+        .item{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .author{
+            font-size: 1.1em;
+            width: 65%;
+            overflow: hidden;
+        }
+
+        .title{
+            padding: 5px;
+            font-size: 1.6em;
+            min-height: 3em;
+        }
+
+        .description{
+            padding: 5px;
+            position: absolute;
+            width: 300px;
+        }
+        
+        .description-mobile{
+            display: none;
+        }
+
+        @include sm {
+            flex-direction: column;
+            height: auto;
+            width: 100%;
+            .image{
+                height: 100px;
+            }
+            .description{
+                display: none;
+            }
+        }
+    }
+    @include sm {
+        margin-left: 0px;
+    }
+}
+
+.page-container-extended{
+    margin-left: 0px;
+}
