@@ -153,3 +153,6 @@ class Article {
         </div>`)
     }
 }
+
+//console.log(pageContainer.childNodes);
+populateArticles({ page: pageContainer.childNodes[0], endpoint: 'top-headlines' });
